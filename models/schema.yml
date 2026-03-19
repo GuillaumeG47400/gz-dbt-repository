@@ -25,10 +25,55 @@ sources:
         description: log cost, ship cost and shipping fee by order_id 
         columns:
           - name: orders_id
-            description: not null raw 
+            description: not null raw and unique id 
             tests:
               - unique
               - not_null
+      - name: adwords
+        identifier: raw_gz_adwords
+        description: adwords campaigns 
+        tests: 
+          - unique:
+              column_name: "(date_date || '-' || campaign_key)"
+
+      
+      - name: bing 
+        identifier: raw_gz_bing
+        description: bing campaigns
+        tests:
+          - unique:
+              column_name: "(date_date || '-' || campaign_key)"
+          - not_null:
+              column_name: "(date_date || '-' || campaign_key)"
+          
+
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: criteo campaigns
+        tests: 
+          - unique:
+              column_name: "(date_date || '-' || campaign_key)"
+      
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: facebook campaigns
+        tests: 
+          - unique:
+              column_name: "(date_date || '-' || campaign_key)"
+      
+models:
+   - name: finance_campaigns_day
+     description: global kpi
+     columns:
+       - name: ads_margin
+         description: operational_margin - ads_cost
+         tests:
+           - not_null
+       - name: average_basket
+         description: average basket cost for each day
+         tests:
+           - not_null      
+            
               
   
       

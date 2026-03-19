@@ -15,6 +15,7 @@ GROUP BY date_date
 )
 SELECT 
 date_date
+    , nb_transactions
      , daily_revenue
      , margin
      , operational_margin
